@@ -1,0 +1,10 @@
+.agents/
+.design-tools/
+.design-setup/
+.impeccable/
+scrollcraft/
+node_modules/
+dist/
+.git/
+.env*
+*.md
