@@ -116,3 +116,63 @@ footer#contact .whatsapp-contact svg{width:24px;height:24px}
 footer#contact .whatsapp-contact:hover{background:#066646;color:#fff}
 footer#contact .social-icon[href]:not(.whatsapp-contact):hover{background:var(--line)}
 footer#contact .social-icon:focus-visible{outline:3px solid var(--sc-accent);outline-offset:4px}
+
+/* Brand atmosphere: sky hero with bubbles and a wave, navy story, Pop Blue close. */
+:root{--wave:clamp(36px,6vw,84px);--story-bg:#0B1F3B;--wave-back:#8ED1FF}
+html[data-theme=dark]{--story-bg:#132238;--wave-back:#1D3A5C}
+.hero{background:#DCEEFF;padding-bottom:var(--wave);min-height:calc(620px + var(--wave))}
+.hero:before,.hero:after{content:'';position:absolute;inset:auto 0 -1px;height:var(--wave);pointer-events:none;-webkit-mask:var(--wave-shape) bottom/100% 100% no-repeat;mask:var(--wave-shape) bottom/100% 100% no-repeat}
+.hero:before{--wave-shape:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 90' preserveAspectRatio='none'%3E%3Cpath d='M0 40C180 4 540 4 720 40S1260 76 1440 40V90H0Z'/%3E%3C/svg%3E");background:var(--wave-back);height:calc(var(--wave) + 12px);z-index:0;transform:translateX(calc(-30% + var(--wave-p,0)*22%))}
+.hero:after{--wave-shape:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 90' preserveAspectRatio='none'%3E%3Cpath d='M0 52C180 84 540 84 720 52S1260 20 1440 52V90H0Z'/%3E%3C/svg%3E");background:var(--story-bg);z-index:1;transform:translateX(calc(var(--wave-p,0)*-28%))}
+.hero-media,html[dir=rtl] .hero-media{max-height:calc(100% - 75px - var(--wave))}
+.hero-foot{bottom:calc(26px + var(--wave))}
+.bubbles{position:absolute;inset:0;z-index:-2;pointer-events:none;overflow:hidden}
+.bubbles i{position:absolute;border-radius:50%;background:rgba(255,255,255,.55);border:1.5px solid rgba(45,156,255,.3);animation:bubble-float 9s ease-in-out infinite alternate}
+.bubbles i:after{content:'';position:absolute;top:17%;left:19%;width:26%;height:15%;border-radius:50%;background:rgba(255,255,255,.95);transform:rotate(-35deg)}
+.bubbles i:nth-child(1){width:112px;height:112px;inset-inline-end:calc(53% - 28px);top:14px}
+.bubbles i:nth-child(2){width:36px;height:36px;inset-inline-end:calc(53% + 44px);bottom:calc(var(--wave) + 150px);animation-duration:7s;animation-delay:-3s}
+.bubbles i:nth-child(3){width:190px;height:190px;inset-inline-end:-56px;bottom:calc(var(--wave) + 4px);animation-duration:12s;animation-delay:-5s}
+.bubbles i:nth-child(4){width:72px;height:72px;inset-inline-start:5%;bottom:calc(var(--wave) + 86px);animation-duration:10s;animation-delay:-2s}
+.bubbles i:nth-child(5){width:24px;height:24px;inset-inline-start:13%;bottom:calc(var(--wave) + 176px);animation-duration:6s;animation-delay:-4s}
+.bubbles i:nth-child(6){width:46px;height:46px;inset-inline-start:29%;bottom:calc(var(--wave) + 58px);animation-duration:8s;animation-delay:-6s}
+@keyframes bubble-float{from{transform:translateY(7px)}to{transform:translateY(-11px)}}
+html[data-theme=dark] .bubbles i{background:rgba(142,209,255,.07);border-color:rgba(142,209,255,.22)}html[data-theme=dark] .bubbles i:after{background:rgba(255,255,255,.18)}
+.service-story{background:var(--story-bg);color:#F8FAFC;box-shadow:0 0 0 100vmax var(--story-bg);clip-path:inset(0 -100vmax)}
+.service-story p{color:#B9CDE4}.service-story .step-number{color:#8ED1FF}.story-steps article,.story-steps article:last-child{border-color:rgba(255,255,255,.16)}
+.service-story :focus-visible{outline-color:#8ED1FF}
+.testimonials{background:#EAF5FF}.review-card{background:#fff}
+.closing{background:#2D9CFF;color:#0B1F3B}.closing>p{color:#0B1F3B;position:relative;z-index:1;font-size:15px}
+.closing .button,.closing .button.light{background:#0B1F3B;border-color:#0B1F3B;color:#F8FAFC;box-shadow:0 8px 18px rgba(11,31,59,.25)}.closing .button:hover,.closing .button.light:hover{background:#17365F;border-color:#17365F}
+.closing .bubbles{z-index:0}.closing .bubbles i{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.5)}
+.closing .bubbles i:nth-child(1){width:150px;height:150px;inset-inline:-40px auto;top:auto;bottom:-46px}
+.closing .bubbles i:nth-child(2){width:44px;height:44px;inset-inline:11% auto;top:34px}
+.closing .bubbles i:nth-child(3){width:120px;height:120px;inset-inline:auto 6%;top:-38px;bottom:auto}
+.closing .bubbles i:nth-child(4){width:30px;height:30px;inset-inline:auto 17%;bottom:40px}
+.closing :focus-visible{outline-color:#0B1F3B}
+/* Area names keep heading size; only the caption below them is small. */
+.areas h3 span:last-child{font-size:inherit;color:inherit}
+@media(max-width:850px){.hero{min-height:0}.hero-media,html[dir=rtl] .hero-media{max-height:none}.hero-foot{bottom:auto}.bubbles i:nth-child(1){width:96px;height:96px;inset-inline-end:-30px;top:22px}.bubbles i:nth-child(2){inset-inline-end:16%;top:8px;bottom:auto}.bubbles i:nth-child(3){width:130px;height:130px;inset-inline-end:-48px;bottom:calc(var(--wave) + 30px)}.bubbles i:nth-child(4){width:64px;height:64px;inset-inline-start:-22px;bottom:auto;top:46%}.bubbles i:nth-child(5),.bubbles i:nth-child(6){display:none}.closing .bubbles i:nth-child(1){width:110px;height:110px}.closing .bubbles i:nth-child(3){width:90px;height:90px;inset-inline:auto -24px}}
+
+/* Inner pages share the home atmosphere: sky page header with wave, navy and Pop Blue bands. */
+:root{--band:#DCEEFF;--close-bg:#2D9CFF}html[data-theme=dark]{--band:#132238;--close-bg:#102A46}
+.about-hero.wrap{max-width:none;padding-inline:max(var(--gutter),calc(50% - 800px + var(--gutter)))}.about-hero{position:relative;isolation:isolate;overflow:clip;background:var(--band);border:0;padding-block:80px calc(64px + var(--wave))}
+.about-hero:before,.about-hero:after{content:'';position:absolute;inset:auto 0 -1px;height:var(--wave);pointer-events:none;z-index:-1;-webkit-mask:var(--wave-shape) bottom/100% 100% no-repeat;mask:var(--wave-shape) bottom/100% 100% no-repeat}
+.about-hero:before{--wave-shape:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 90' preserveAspectRatio='none'%3E%3Cpath d='M0 38C200 4 420 78 700 44S1220 6 1440 46V90H0Z'/%3E%3C/svg%3E");background:var(--wave-back);height:calc(var(--wave) + 12px)}
+.about-hero:after{--wave-shape:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 90' preserveAspectRatio='none'%3E%3Cpath d='M0 56C240 96 480 10 720 44S1200 24 1440 58V90H0Z'/%3E%3C/svg%3E");background:var(--sc-canvas)}
+.about-hero .bubbles i:nth-child(1){width:150px;height:150px;inset-inline:auto 4%;top:34px;bottom:auto}
+.about-hero .bubbles i:nth-child(2){width:40px;height:40px;inset-inline:auto 22%;top:44px;bottom:auto}
+.about-hero .bubbles i:nth-child(3){width:84px;height:84px;inset-inline:auto 19%;top:auto;bottom:calc(var(--wave) + 26px)}
+.about-hero .bubbles i:nth-child(4){width:26px;height:26px;inset-inline:auto 31%;top:auto;bottom:calc(var(--wave) + 96px)}
+.service-details{background:var(--story-bg);color:#F8FAFC;box-shadow:0 0 0 100vmax var(--story-bg);clip-path:inset(0 -100vmax);border:0;padding-block:80px}
+.service-details p{color:#B9CDE4}.service-details :focus-visible{outline-color:#8ED1FF}
+.service-options{padding-bottom:90px}
+.about-principles article{border-top:2px solid #2D9CFF}
+.about-close,html[data-theme=dark] .about-close{background:var(--close-bg);box-shadow:0 0 0 100vmax var(--close-bg);clip-path:inset(0 -100vmax)}
+.about-close{color:#0B1F3B}html[data-theme=dark] .about-close{color:#EDF3FA}
+.about-close .button{background:#0B1F3B;border-color:#0B1F3B;color:#F8FAFC}.about-close .button:hover{background:#17365F;border-color:#17365F}
+.about-close :focus-visible{outline-color:#0B1F3B}
+@media(max-width:850px){.about-hero{padding-block:54px calc(44px + var(--wave))}.about-hero .bubbles i:nth-child(1){width:96px;height:96px;inset-inline:auto -30px;top:16px}.about-hero .bubbles i:nth-child(2){inset-inline:auto 20%;top:14px}.about-hero .bubbles i:nth-child(3){width:56px;height:56px;inset-inline:auto 6%;bottom:calc(var(--wave) + 4px)}.about-hero .bubbles i:nth-child(4){display:none}.service-details{padding-block:56px}}
+
+/* Hero waves drift sideways with scroll; tiles repeat so the edges never show. */
+.hero:before,.hero:after{inset-inline:0 auto;right:auto;left:0;width:200%;-webkit-mask-size:50% 100%;mask-size:50% 100%;-webkit-mask-repeat:repeat-x;mask-repeat:repeat-x;will-change:transform}
+.hero:before{-webkit-mask-size:42% 100%;mask-size:42% 100%}
