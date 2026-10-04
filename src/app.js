@@ -1,5 +1,7 @@
 const messages={
   "en": {
+    "zayed": "Hi Pop Up! I would like to book a mobile car wash at home in Sheikh Zayed. Can I send my location to confirm coverage and appointments?",
+    "october": "Hi Pop Up! I would like to book an at-home car wash in 6th of October City. Can I send my location to confirm coverage and appointments?",
     "general": "Hi Pop Up! I would like to book an at-home car wash. Could you share the available appointments and booking details?",
     "single": "Hi Pop Up! I would like to book a single at-home car wash for EGP 450, including the interior, exterior and trunk. What appointments are available?",
     "two": "Hi Pop Up! I would like to subscribe to the 2 washes per month plan for EGP 750 per month. Could you share the subscription details and available appointments?",
@@ -14,6 +16,8 @@ const messages={
     "terms": "Hi Pop Up! I have a question about your service terms before booking. Could you clarify them for me?"
   },
   "ar": {
+    "zayed": "أهلًا بوب اب! حابب أحجز غسيل عربية عند البيت في الشيخ زايد. ممكن أبعت اللوكيشن للتأكد من التغطية والمواعيد؟",
+    "october": "أهلًا بوب اب! حابب أحجز غسيل عربية عند البيت في مدينة ٦ أكتوبر. ممكن أبعت اللوكيشن للتأكد من التغطية والمواعيد؟",
     "general": "أهلًا بوب اب! حابب أحجز غسيل للعربية عند البيت. ممكن أعرف المواعيد المتاحة وتفاصيل الحجز؟",
     "single": "أهلًا بوب اب! حابب أحجز غسلة واحدة عند البيت بـ٤٥٠ جنيه، تشمل الداخل والخارج والشنطة. إيه المواعيد المتاحة؟",
     "two": "أهلًا بوب اب! حابب أشترك في باقة غسلتين في الشهر بـ٧٥٠ جنيه شهريًا. ممكن أعرف تفاصيل الاشتراك والمواعيد المتاحة؟",

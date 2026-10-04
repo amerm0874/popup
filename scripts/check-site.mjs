@@ -5,7 +5,7 @@ import {fileURLToPath} from 'node:url';
 import {load} from 'cheerio';
 const root=resolve(fileURLToPath(new URL('../dist/',import.meta.url)));
 const info=JSON.parse(await readFile(join(root,'build-info.json'),'utf8'));
-const names=['index','services','about','support','privacy','terms'];
+const names=['index','services','service-areas','about','support','privacy','terms'];
 const expected=(n,l)=>info.origin+(l==='ar'?'/ar/'+n+'.html':n==='index'?'/':'/'+n+'.html');
 for(const lang of ['en','ar'])for(const name of names){
  const file=join(root,lang==='ar'?'ar':'',name+'.html');const $=load(await readFile(file,'utf8'));
@@ -17,6 +17,9 @@ for(const lang of ['en','ar'])for(const name of names){
  const schema=JSON.parse($('script[type="application/ld+json"]').text());assert.equal(schema['@context'],'https://schema.org');assert(schema['@graph'].some(x=>x.telephone==='+201010023147'));
  assert(!JSON.stringify(schema).includes('pricing.html'),'Hidden pricing must not be linked in structured data');
  assert.equal($('a[href*="pricing.html"]').length,0,'Hidden pricing must not be linked');
+ if(['services','service-areas'].includes(name)){assert(!/EGP|جنيه/.test($('main').text()),'Service information must not reintroduce hidden prices');assert(!JSON.stringify(schema).includes('"price"'),'No hidden offer prices');}
+ if(name!=='index'){assert.equal($('.breadcrumbs [aria-current=page]').length,1);assert(schema['@graph'].some(x=>x['@type']==='BreadcrumbList'));}
+ for(const faq of schema['@graph'].filter(x=>x['@type']==='FAQPage')){assert.equal(faq.mainEntity.length,$('.faq details').length);for(const q of faq.mainEntity){assert(!q.name.endsWith('+'));assert($('main').text().includes(q.acceptedAnswer.text));}}
  assert(!JSON.stringify(schema).includes('aggregateRating'));assert.equal($('.footer-policies a').length,3);
  for(const a of $('a[href]').toArray()){
   const href=$(a).attr('href');if(!href.startsWith('/')||href.startsWith('//'))continue;
@@ -33,8 +36,9 @@ for(const lang of ['en','ar']){
  assert.equal($('meta[name=robots]').attr('content'),'noindex,follow');
  assert.equal($('meta[http-equiv=refresh]').attr('content'),'0;url='+(lang==='ar'?'/ar/index.html':'/'));
 }
-const map=load(await readFile(join(root,'sitemap.xml'),'utf8'),{xmlMode:true});assert.equal(map('url').length,12);assert.equal(new Set(map('loc').map((_,el)=>map(el).text()).get()).size,12);
+const map=load(await readFile(join(root,'sitemap.xml'),'utf8'),{xmlMode:true});assert.equal(map('url').length,14);assert.equal(new Set(map('loc').map((_,el)=>map(el).text()).get()).size,14);
+assert.equal(map('xhtml\\:link').length,42,'Every URL needs three language alternates');
 assert(!map('loc').toArray().some(el=>map(el).text().includes('pricing.html')));
 assert((await readFile(join(root,'robots.txt'),'utf8')).includes('User-agent: OAI-SearchBot\nAllow: /'));
 assert(load(await readFile(join(root,'404.html'),'utf8'))('meta[name=robots]').attr('content').includes('noindex'));
-console.log('PASS: 12 static language pages, hidden pricing redirects, canonical/hreflang, sitemap, metadata, schema, internal assets/links, WhatsApp prices, footer policies and noindex guards.');
+console.log('PASS: 14 static language pages, hidden pricing redirects, canonical/hreflang, sitemap, metadata, schema, internal assets/links, WhatsApp prices, footer policies and noindex guards.');
